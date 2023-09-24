@@ -1,0 +1,27 @@
+.brillo-imagen{
+    filter:brightness(50%)
+}
+
+.tamaño-tarjeta {
+    width: 20rem;
+    height: 36em;
+}
+
+.link-con-punto{
+    text-decoration-style:dotted;
+    color: black;
+}
+
+.pie-de-pagina{
+    background-image: linear-gradient(to right top, #1C3846, #1D465C,#1D5271);
+    
+}
+
+.foto-fondo{
+    background: url('../img/ba1.jpg') no-repeat center center fixed;
+    width: 100%;
+    height: 100vh;
+    filter:brightness(50%);
+
+}
+
