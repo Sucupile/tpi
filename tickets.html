@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conf Bs As</title>
+    <title>Comprar Tickets</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/estilos.css">
 </head>
@@ -50,7 +50,7 @@
                     <div class="p-2"><h5 class="card-title">Estudiante</h5></div>
                     <div class="p-2"><h6>Tiene un descuento de:</h6></div>
                     <div class="p-2"><h5>80%</h5></div>
-                    <div class="p-2"><h6>*Presentar Documentacion</h6></div>
+                    <div class="p-2"><h6>*Presentar Documentación</h6></div>
                 </div>
             </div>
             <div class="card m-3 tamaño-tarjeta-descuento ">
@@ -58,7 +58,7 @@
                     <div class="p-2"><h5 class="card-title">Trainee</h5></div>
                     <div class="p-2"><h6>Tiene un descuento de:</h6></div>
                     <div class="p-2"><h5>50%</h5></div>
-                    <div class="p-2"><h6>*Presentar Documentacion</h6></div>
+                    <div class="p-2"><h6>*Presentar Documentación</h6></div>
                 </div>
             </div>
             <div class="card m-3 tamaño-tarjeta-descuento ">
@@ -66,7 +66,7 @@
                     <div class="p-2"><h5 class="card-title">Junior</h5></div>
                     <div class="p-2"><h6>Tiene un descuento de:</h6></div>
                     <div class="p-2"><h5>15%</h5></div>
-                    <div class="p-2"><h6>*Presentar Documentacion</h6></div>
+                    <div class="p-2"><h6>*Presentar Documentación</h6></div>
                 </div>
             </div>
         </div>
@@ -80,29 +80,45 @@
         </div>
 
         <div class="container d-flex justify-content-center">
-            <form class="row col-10 justify-content-center" >
+            <form class="row col-10 justify-content-center " >
                 <div class="row d-flex flex-column flex-md-row">
-                    <div class="col-12 col-md-6 pb-2"><input type="text" class="form-control fs-5" placeholder="Nombre" aria-label="Nombre"></div>
-                    <div class="col-12 col-md-6 pb-2"><input type="text" class="form-control fs-5" placeholder="Apellido" aria-label="Apellido"></div>
-                </div>
-                <div class="row d-flex flex-column flex-md-row">
-                    <div class="col-12 col-md-12 pb-2"><input type="email" class="form-control fs-5" placeholder="Correo" aria-label="Correo"></div>
-                </div>
-                <div class="row d-flex flex-column flex-md-row">
-                    <div class="col-12 col-md-6 pb-2"><input type="number" class="form-control fs-5" placeholder="Cantidad" aria-label="Cantidad"></div>
                     <div class="col-12 col-md-6 pb-2">
-                        <select class="form-select fs-5" aria-label="Descuento">
-                            <option selected value="80">Estudiante</option>
+                        <input type="text" id="nombre"   class="form-control fs-5" placeholder="Nombre" aria-label="Nombre" required>
+                        <div class="valid-feedback">¡Se ve bien!</div>                        
+                    </div>
+                    <div class="col-12 col-md-6 pb-2"><input type="text" id="apellido" class="form-control fs-5" placeholder="Apellido" aria-label="Apellido" required></div>
+                </div>
+                <div class="row d-flex flex-column flex-md-row">
+                    <div class="col-12 col-md-12 pb-2"><input type="email" id="correo" class="form-control fs-5" placeholder="Correo" aria-label="Correo" required></div>
+                </div>
+                <div class="row d-flex flex-column flex-md-row">
+                    <div class="col-12 col-md-6 pb-2">
+                        <label for="cantidad" class="form-label fs-5 ms-1">Cantidad</label>
+                        <input type="number" min="1" id="cantidad" class="form-control fs-5" placeholder="Cantidad" aria-label="Cantidad" required pattern="\d+">
+                    </div>
+                    <div class="col-12 col-md-6 pb-2">
+                        <label for="categoria" class="form-label fs-5 ms-1">Categoria</label>
+                        <select class="form-select fs-5" id="categoria" aria-label="Descuento">
+                            <option selected value="0">Publico General</option>
+                            <option value="80">Estudiante</option>
                             <option value="50">Trainee</option>
                             <option value="15">Junior</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mt-1 ps-4 pe-4">
-                    <div class="col-12 fs-5 alert alert-primary p">Total a Pagar $:</div>
+                    <div class="col-12 fs-5 alert alert-primary p" id="aPagar">Total a Pagar: $</div>
                 </div>
                 <div class="row mt-2 ps-4 pe-4">
-                    <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+                    <div class="col-6 d-flex flex-column ps-0 pe-2">
+                        <button type="button" id="btn-borrar" class="btn btn-success btn-lg">Borrar</button>
+                    </div>
+                    <div class="col-6 d-flex flex-column ps-2 pe-0">
+                        <button type="button" id="btn-enviar" class="btn btn-success btn-lg">Resumen</button>
+                    </div>
+                </div>
+                <div>
+                    
                 </div>
             </form>
         </div>
@@ -124,5 +140,6 @@
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="./js/tickets.js"></script>
 </body>
 </html>
