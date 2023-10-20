@@ -7,6 +7,11 @@
     height: 36em;
 }
 
+.tamaño-tarjeta-descuento {
+    width: 20rem;
+    height: 14em;
+}
+
 .link-con-punto{
     text-decoration-style:dotted;
     color: black;
