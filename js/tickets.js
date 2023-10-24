@@ -1,3 +1,10 @@
+// Objeto con expresiones para validacion
+const expresiones = {
+    apeynom: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,                                   // Letras, espacios, letras con acento
+    correo: /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+    cantidad: /^\d{1,10}$/                                              // De 1 a 10 numeros
+}
+
 const btnEnviar = document.getElementById("btn-enviar");
 const btnBorrar = document.getElementById("btn-borrar");
 
@@ -12,12 +19,19 @@ btnEnviar.addEventListener(
         const categoria = document.getElementById("categoria").value;
         const aPagar = document.getElementById("aPagar");
 
-        if (!(nombre && apellido && correo && cantidad>0 && categoria ))
-            aPagar.innerText = "Debe completar todos los campos";
+        if (!expresiones.apeynom.test(nombre))
+            aPagar.innerText = "Debe ingresar un nombre válido";
+        else if (!expresiones.apeynom.test(apellido))
+            aPagar.innerText = "Debe ingresar un apellido válido";
+        else if (!expresiones.correo.test(correo))
+            aPagar.innerText = "Debe ingresar un correo valido";
+        else if (!(expresiones.cantidad.test(cantidad) && cantidad>0))
+            aPagar.innerText = "Debe ingresar una cantidad mayor a 0";
+        else if (!(categoria==0 || categoria == 15 || categoria == 50 || categoria == 80))
+            aPagar.innerText = "Debe seleccionar una categoria válida";
         else {
             const monto = 200 * cantidad * (1 - categoria/100);
             aPagar.innerText = "Total a Pagar: $ " + monto.toFixed(2);
-            // enviar al servidor
         }
       
     }

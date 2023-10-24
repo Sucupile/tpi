@@ -80,25 +80,24 @@
         </div>
 
         <div class="container d-flex justify-content-center">
-            <form class="row col-10 justify-content-center " >
+            <form class="row col-10 justify-content-center " id="form" >
                 <div class="row d-flex flex-column flex-md-row">
                     <div class="col-12 col-md-6 pb-2">
-                        <input type="text" id="nombre"   class="form-control fs-5" placeholder="Nombre" aria-label="Nombre" required>
-                        <div class="valid-feedback">¡Se ve bien!</div>                        
+                        <input type="text" id="nombre"  name="nombre" class="form-control fs-5" placeholder="Nombre" aria-label="Nombre" required>
                     </div>
-                    <div class="col-12 col-md-6 pb-2"><input type="text" id="apellido" class="form-control fs-5" placeholder="Apellido" aria-label="Apellido" required></div>
+                    <div class="col-12 col-md-6 pb-2"><input type="text" id="apellido" name="apellido" class="form-control fs-5" placeholder="Apellido" aria-label="Apellido" required></div>
                 </div>
                 <div class="row d-flex flex-column flex-md-row">
-                    <div class="col-12 col-md-12 pb-2"><input type="email" id="correo" class="form-control fs-5" placeholder="Correo" aria-label="Correo" required></div>
+                    <div class="col-12 col-md-12 pb-2"><input type="email" id="correo" name="correo" class="form-control fs-5" placeholder="Correo" aria-label="Correo" required></div>
                 </div>
                 <div class="row d-flex flex-column flex-md-row">
                     <div class="col-12 col-md-6 pb-2">
                         <label for="cantidad" class="form-label fs-5 ms-1">Cantidad</label>
-                        <input type="number" min="1" id="cantidad" class="form-control fs-5" placeholder="Cantidad" aria-label="Cantidad" required pattern="\d+">
+                        <input type="number" min="1" id="cantidad" name="cantidad"  class="form-control fs-5" placeholder="Cantidad" aria-label="Cantidad" required pattern="\d+">
                     </div>
                     <div class="col-12 col-md-6 pb-2">
                         <label for="categoria" class="form-label fs-5 ms-1">Categoria</label>
-                        <select class="form-select fs-5" id="categoria" aria-label="Descuento">
+                        <select class="form-select fs-5" id="categoria" name="categoria" aria-label="Descuento">
                             <option selected value="0">Publico General</option>
                             <option value="80">Estudiante</option>
                             <option value="50">Trainee</option>
