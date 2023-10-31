@@ -65,8 +65,6 @@ btnEnviar.addEventListener(
         if (campos.nombre && campos.apellido && campos.correo && campos.cantidad){
            const monto = VALOR_TICKET * cantidad * (1 - categoria/100);
            aPagar.innerText = "Total a Pagar: $ " + monto.toFixed(2);
-           console.log(cantidad);
-
         }else{
             aPagar.innerText = "Debe completar todos los campos";
         }
@@ -78,10 +76,15 @@ const btnBorrar = document.getElementById("btn-borrar");
 btnBorrar.addEventListener(
     "click", 
     () => {
+        campos["nombre"] = false;
+        campos["apellido"] = false;
+        campos["correo"] = false;
+        campos["cantidad"] = false;
+
         document.getElementById("nombre").value = "";
         document.getElementById("apellido").value = "";
         document.getElementById("correo").value = "";
-        document.getElementById("cantidad").value = 1;
+        document.getElementById("cantidad").value = "";
         document.getElementById("categoria").value = 0;
         document.getElementById("categoria").text = "Publico General";
         document.getElementById("aPagar").innerText = "Total a Pagar: $";
