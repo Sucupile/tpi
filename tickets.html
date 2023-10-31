@@ -43,9 +43,9 @@
     </div>
 
     <!-- Sector Tipos de Descuentos -->
-    <div class="container d-flex justify-content-center d-flex flex-column">
+    <div class="container mt-3 pt-1 d-flex justify-content-center d-flex flex-column">
         <div class="container d-flex flex-row justify-content-center align-items-start flex-wrap">
-            <div class="card m-3 tamaño-tarjeta-descuento ">
+            <div class="card border-info m-3 tamaño-tarjeta-descuento ">
                 <div class="card-body text-center">
                     <div class="p-2"><h5 class="card-title">Estudiante</h5></div>
                     <div class="p-2"><h6>Tiene un descuento de:</h6></div>
@@ -53,7 +53,7 @@
                     <div class="p-2"><h6>*Presentar Documentación</h6></div>
                 </div>
             </div>
-            <div class="card m-3 tamaño-tarjeta-descuento ">
+            <div class="card border-warning m-3 tamaño-tarjeta-descuento ">
                 <div class="card-body text-center">
                     <div class="p-2"><h5 class="card-title">Trainee</h5></div>
                     <div class="p-2"><h6>Tiene un descuento de:</h6></div>
@@ -61,7 +61,7 @@
                     <div class="p-2"><h6>*Presentar Documentación</h6></div>
                 </div>
             </div>
-            <div class="card m-3 tamaño-tarjeta-descuento ">
+            <div class="card border-success m-3 tamaño-tarjeta-descuento ">
                 <div class="card-body text-center">
                     <div class="p-2"><h5 class="card-title">Junior</h5></div>
                     <div class="p-2"><h6>Tiene un descuento de:</h6></div>
@@ -84,16 +84,24 @@
                 <div class="row d-flex flex-column flex-md-row">
                     <div class="col-12 col-md-6 pb-2">
                         <input type="text" id="nombre"  name="nombre" class="form-control fs-5" placeholder="Nombre" aria-label="Nombre" required>
+                        <div class="feedback" id="nombre__feedback"></div>
+                     </div>
+                    <div class="col-12 col-md-6 pb-2">
+                        <input type="text" id="apellido" name="apellido" class="form-control fs-5" placeholder="Apellido" aria-label="Apellido" required>
+                        <div class="feedback" id="apellido__feedback"></div>
                     </div>
-                    <div class="col-12 col-md-6 pb-2"><input type="text" id="apellido" name="apellido" class="form-control fs-5" placeholder="Apellido" aria-label="Apellido" required></div>
                 </div>
                 <div class="row d-flex flex-column flex-md-row">
-                    <div class="col-12 col-md-12 pb-2"><input type="email" id="correo" name="correo" class="form-control fs-5" placeholder="Correo" aria-label="Correo" required></div>
+                    <div class="col-12 col-md-12 pb-2">
+                        <input type="email" id="correo" name="correo" class="form-control fs-5" placeholder="Correo" aria-label="Correo" required>
+                        <div class="feedback" id="correo__feedback"></div>
+                    </div>
                 </div>
                 <div class="row d-flex flex-column flex-md-row">
                     <div class="col-12 col-md-6 pb-2">
                         <label for="cantidad" class="form-label fs-5 ms-1">Cantidad</label>
                         <input type="number" min="1" id="cantidad" name="cantidad"  class="form-control fs-5" placeholder="Cantidad" aria-label="Cantidad" required pattern="\d+">
+                        <div class="feedback" id="cantidad__feedback"></div>
                     </div>
                     <div class="col-12 col-md-6 pb-2">
                         <label for="categoria" class="form-label fs-5 ms-1">Categoria</label>
@@ -124,7 +132,7 @@
     </div>
 
     <!-- Pie de pagina -->
-    <nav class="navbar pie-de-pagina mt-4 pt-2 pb-2 p-lg-4">
+    <nav class="navbar pie-de-pagina mt-5 pt-2 pb-2 p-lg-4">
         <div class="container flex-column flex-lg-row text-white">
             <div><a class="nav-link" href="#">Preguntas Frecuentes</a></div>
             <div><a class="nav-link" href="#">Contáctanos</a></div>

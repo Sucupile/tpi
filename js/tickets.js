@@ -1,50 +1,98 @@
+const VALOR_TICKET = 200;
+
 // Objeto con expresiones para validacion
 const expresiones = {
     apeynom: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,                                   // Letras, espacios, letras con acento
     correo: /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
-    cantidad: /^\d{1,10}$/                                              // De 1 a 10 numeros
+    cantidad: /^[1-9]\d*$/                                              // De 1 a 10 numeros
 }
 
+/* Lo uso para verificar que esten todos cargados */
+const campos = {
+    nombre: false,
+    apellido: false,
+    correo: false,
+    cantidad: false
+}
+
+const inputs = document.querySelectorAll("#form input");
+
+const validarform = (e) => {
+    switch (e.target.name) {
+        case "nombre":
+            validarCampo(expresiones.apeynom, e.target, "nombre");
+        break;
+        case "apellido":
+            validarCampo(expresiones.apeynom, e.target, "apellido");
+        break;
+        case "correo":
+            validarCampo(expresiones.correo, e.target, "correo");
+        break;
+        case "cantidad":
+            validarCampo(expresiones.cantidad, e.target, "cantidad");
+        break;
+    }
+}
+
+const validarCampo = (expresion, input, campo) =>{
+    if( expresion.test(input.value) ){
+        document.getElementById(`${campo}__feedback`).innerHTML = "";
+        document.getElementById(`${campo}`).classList.remove("is-invalid");
+        document.getElementById(`${campo}__feedback`).classList.remove("invalid-feedback");
+        document.getElementById(`${campo}`).classList.add("is-valid");
+        campos[campo] = true;
+    }else{
+        document.getElementById(`${campo}__feedback`).innerHTML = "Valor invalido";
+        document.getElementById(`${campo}__feedback`).classList.add("invalid-feedback");
+        document.getElementById(`${campo}`).classList.add("is-invalid"); 
+        campos[campo] = false;
+    }
+}
+
+inputs.forEach( (input) => {
+    input.addEventListener("keyup", validarform);
+    input.addEventListener("blur", validarform);
+});
+
 const btnEnviar = document.getElementById("btn-enviar");
-const btnBorrar = document.getElementById("btn-borrar");
 
 btnEnviar.addEventListener(
     "click", 
     (e)=>{
-
-        const nombre = document.getElementById("nombre").value;
-        const apellido = document.getElementById("apellido").value;
-        const correo = document.getElementById("correo").value;
-        const cantidad = document.getElementById("cantidad").value;
-        const categoria = document.getElementById("categoria").value;
         const aPagar = document.getElementById("aPagar");
+        const categoria = document.getElementById("categoria").value;
+        const cantidad = document.getElementById("cantidad").value;
+        if (campos.nombre && campos.apellido && campos.correo && campos.cantidad){
+           const monto = VALOR_TICKET * cantidad * (1 - categoria/100);
+           aPagar.innerText = "Total a Pagar: $ " + monto.toFixed(2);
+           console.log(cantidad);
 
-        if (!expresiones.apeynom.test(nombre))
-            aPagar.innerText = "Debe ingresar un nombre válido";
-        else if (!expresiones.apeynom.test(apellido))
-            aPagar.innerText = "Debe ingresar un apellido válido";
-        else if (!expresiones.correo.test(correo))
-            aPagar.innerText = "Debe ingresar un correo valido";
-        else if (!(expresiones.cantidad.test(cantidad) && cantidad>0))
-            aPagar.innerText = "Debe ingresar una cantidad mayor a 0";
-        else if (!(categoria==0 || categoria == 15 || categoria == 50 || categoria == 80))
-            aPagar.innerText = "Debe seleccionar una categoria válida";
-        else {
-            const monto = 200 * cantidad * (1 - categoria/100);
-            aPagar.innerText = "Total a Pagar: $ " + monto.toFixed(2);
+        }else{
+            aPagar.innerText = "Debe completar todos los campos";
         }
       
-    }
-)
+    });
 
-btnBorrar.addEventListener("click", borrarFormCompra)
+const btnBorrar = document.getElementById("btn-borrar");
 
-function borrarFormCompra(){
-    document.getElementById("nombre").value = "";
-    document.getElementById("apellido").value = "";
-    document.getElementById("correo").value = "";
-    document.getElementById("cantidad").value = 1;
-    document.getElementById("categoria").value = 0;
-    document.getElementById("categoria").text = "Publico General";
-    document.getElementById("aPagar").innerText = "Total a Pagar: $";
-}
+btnBorrar.addEventListener(
+    "click", 
+    () => {
+        document.getElementById("nombre").value = "";
+        document.getElementById("apellido").value = "";
+        document.getElementById("correo").value = "";
+        document.getElementById("cantidad").value = 1;
+        document.getElementById("categoria").value = 0;
+        document.getElementById("categoria").text = "Publico General";
+        document.getElementById("aPagar").innerText = "Total a Pagar: $";
+        document.querySelectorAll(".feedback").forEach( (feedback) => {
+            feedback.innerHTML = "";
+            feedback.classList.remove("invalid-feedback");
+            feedback.classList.remove("valid-feedback");
+        });
+
+        document.querySelectorAll("#form input").forEach( (input) => {
+            input.classList.remove("is-valid");
+            input.classList.remove("is-invalid");
+        });
+    });
